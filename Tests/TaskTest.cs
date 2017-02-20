@@ -49,6 +49,23 @@ namespace ToDoList
       Assert.Equal(testList, result);
     }
 
+    [Fact]
+    public void Test_Save_AssignsIdToObject()
+    {
+      //Arrange
+      Task testTask = new Task("Mow the lawn");
+
+      //Act
+      testTask.Save();
+      Task savedTask = Task.GetAll()[0];
+
+      int result = savedTask.GetId();
+      int testId = testTask.GetId();
+
+      //Assert
+      Assert.Equal(testId, result);
+    }
+
     public void Dispose()
     {
       Task.DeleteAll();

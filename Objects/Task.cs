@@ -17,16 +17,17 @@ namespace ToDoList
 
     public override bool Equals(System.Object otherTask)
     {
-      if (!(otherTask is Task))
-      {
-        return false;
-      }
-      else
-      {
-        Task newTask = (Task) otherTask;
-        bool descriptionEquality = (this.GetDescription() == newTask.GetDescription());
-        return (descriptionEquality);
-      }
+        if (!(otherTask is Task))
+        {
+          return false;
+        }
+        else
+        {
+          Task newTask = (Task) otherTask;
+          bool idEquality = (this.GetId() == newTask.GetId());
+          bool descriptionEquality = (this.GetDescription() == newTask.GetDescription());
+          return (idEquality && descriptionEquality);
+        }
     }
 
     public int GetId()
