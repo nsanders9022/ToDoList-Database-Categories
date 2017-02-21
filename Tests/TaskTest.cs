@@ -95,6 +95,30 @@ namespace ToDoList
       Assert.Equal(expected, foundDueDate);
     }
 
+    [Fact]
+    public void Test_DueDate_GetSortedList()
+    {
+      //Arrange
+      Task firstTask = new Task("Mow the lawn", 1, "2017-03-02");
+      Task secondTask = new Task("Walk the dog", 1, "2017-05-02");
+      Task thirdTask = new Task("Wash dishes", 1, "2017-03-12");
+      firstTask.Save();
+      secondTask.Save();
+      thirdTask.Save();
+
+
+      //Act
+      List<Task> allTaskList = new List<Task>{firstTask, secondTask, thirdTask};
+      Console.WriteLine(allTaskList);
+      List<Task> expectedList = new List<Task>{firstTask, thirdTask, secondTask};
+      Console.WriteLine(expectedList);
+      List<Task> testList = Task.GetSortedList();
+      Console.WriteLine(testList);
+
+      //Assert
+      Assert.Equal(testList, expectedList);
+    }
+
     public void Dispose()
     {
       Task.DeleteAll();
