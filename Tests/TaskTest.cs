@@ -109,11 +109,12 @@ namespace ToDoList
 
       //Act
       List<Task> allTaskList = new List<Task>{firstTask, secondTask, thirdTask};
-      Console.WriteLine(allTaskList);
+      foreach (Task task in allTaskList)
+      {
+          Console.WriteLine(task.GetDescription());
+      }
       List<Task> expectedList = new List<Task>{firstTask, thirdTask, secondTask};
-      Console.WriteLine(expectedList);
       List<Task> testList = Task.GetSortedList();
-      Console.WriteLine(testList);
 
       //Assert
       Assert.Equal(testList, expectedList);
