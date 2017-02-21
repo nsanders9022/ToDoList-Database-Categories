@@ -173,5 +173,19 @@ namespace ToDoList
             }
             return tasks;
         }
+
+        public List<Task> GetSortedCategoryTasks()
+        {
+            List<Task> sortedList = Task.GetSortedList();
+            List<Task> finalSortedList = new List<Task>{};
+            foreach (Task task in sortedList)
+            {
+                if (task.GetCategoryId() == this.GetId())
+                {
+                    finalSortedList.Add(task);
+                }
+            }
+            return finalSortedList;
+        }
     }
 }

@@ -1,4 +1,4 @@
-<h2>Here are all the tasks in this category:</h2>
+<h2>Here are all the tasks in this category (@Model["category"].GetName()):</h2>
 
 @if (@Model["tasks"].Count == 0)
 {
@@ -9,9 +9,14 @@ else
   <ol>
     @foreach (var task in @Model["tasks"])
     {
-      <li>@task.GetDescription()</li>
+      <li>@task.GetDescription(), @task.GetDueDate()</li>
+
     }
   </ol>
 }
+
+<form action='/categories/@Model["category"].GetId()/tasks/sort' method="post">
+  <button type="submit">Sort tasks by due date</button>
+</form>
 <p><a href="/tasks/new">Add a new task</a></p>
 <p><a href="/">Return to Main Page</a></p>

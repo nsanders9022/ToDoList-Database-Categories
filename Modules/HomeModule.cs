@@ -33,6 +33,15 @@ namespace ToDoList
                 return View["tasks.cshtml", AllSortedTasks];
             };
 
+            Post["/categories/{id}/tasks/sort"] = parameters => {
+                Dictionary<string, object> model = new Dictionary<string, object>();
+                var SelectedCategory = Category.Find(parameters.id);
+                List<Task> AllSortedCategoryTasks = SelectedCategory.GetSortedCategoryTasks();
+                model.Add("category", SelectedCategory);
+                model.Add("tasks", AllSortedCategoryTasks);
+                return View["category.cshtml", model];
+            };
+
             Post["/categories/new"] = _ => {
                 Category newCategory = new Category(Request.Form["category-name"]);
                 newCategory.Save();
