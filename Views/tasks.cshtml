@@ -8,9 +8,12 @@ else
   <ul>
     @foreach (var task in Model)
     {
-      <li>@task.GetDescription()</li>
+      <li>@task.GetDescription(), @task.GetDueDate()</li>
     }
   </ul>
+  <form action="/tasks/sort" method="post">
+    <button type="submit">Sort tasks by due date</button>
+  </form>
   <form action="/tasks/delete" method="post">
     <button type="submit">Clear all tasks</button>
   </form>

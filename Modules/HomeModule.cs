@@ -26,6 +26,13 @@ namespace ToDoList
             Get["/categories/new"] = _ => {
                 return View["categories_form.cshtml"];
             };
+
+            Post["/tasks/sort"] = _ => {
+                // List<Task> AllTasks = Task.GetAll();
+                List<Task> AllSortedTasks = Task.GetSortedList();
+                return View["tasks.cshtml", AllSortedTasks];
+            };
+
             Post["/categories/new"] = _ => {
                 Category newCategory = new Category(Request.Form["category-name"]);
                 newCategory.Save();
@@ -36,7 +43,7 @@ namespace ToDoList
                 return View["tasks_form.cshtml", AllCategories];
             };
             Post["/tasks/new"] = _ => {
-                Task newTask = new Task(Request.Form["task-description"], Request.Form["category-id"], "2020-05-20");
+                Task newTask = new Task(Request.Form["task-description"], Request.Form["category-id"], Request.Form["task-due-date"]);
                 newTask.Save();
                 return View["success.cshtml"];
             };
