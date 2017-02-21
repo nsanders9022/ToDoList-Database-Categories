@@ -67,7 +67,7 @@ namespace ToDoList
     }
 
     [Fact]
-    public void Test_FindFindsTaskInDatabase()
+    public void Test_Find_FindsTaskInDatabase()
     {
       //Arrange
       Task testTask = new Task("Mow the lawn", 1, "2017-03-02");
@@ -78,6 +78,21 @@ namespace ToDoList
 
       //Assert
       Assert.Equal(testTask, foundTask);
+    }
+
+    [Fact]
+    public void Test_DueDate_GetDueDate()
+    {
+      //Arrange
+      Task testTask = new Task("Mow the lawn", 1, "2017-03-02");
+      testTask.Save();
+      string expected = ("2017-03-02");
+
+      //Act
+      string foundDueDate = testTask.GetDueDate();
+
+      //Assert
+      Assert.Equal(expected, foundDueDate);
     }
 
     public void Dispose()
